@@ -71,6 +71,7 @@ $ echo LANG=en_US.UTF-8 > /etc/locale.conf
 
 ### network setting
 ```$ echo myhostname > /etc/hostname```
+
 Edit /etc/hosts as following
 
 ```
@@ -86,8 +87,10 @@ Edit /etc/hosts as following
 ```
 $ useradd -m -g users -G wheel,storage,power username
 $ passwd username
-$ visudo then uncomment %wheel ALL=(ALL:ALL) ALL for super user
 ```
+
+```$ visudo``` then uncomment ```%wheel ALL=(ALL:ALL) ALL``` for super user
+
 
 # Install bootloader
 ### sample as grub
@@ -100,7 +103,7 @@ $ pacman -S grub efibootmgr os-prober
 $ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi
 ```
 
-Edit /etc/default/grub, uncomment GRUB_DISABLE_OS_PROBER=false
+Edit ```/etc/default/grub```, uncomment ```GRUB_DISABLE_OS_PROBER=false```
 
 ```$ grub-mkconfig -o /boot/grub/grub.cfg```
 
