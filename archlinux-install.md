@@ -1,8 +1,8 @@
 # UEFI entries
 If you can boot into Linux in UEFI mode, use efibootmgr:
 
-- ```efibootmgr or efibootmgr -v``` to list entries
-- ```efibootmgr -b XXXX -B``` to delete an entry by number
+- ```$ efibootmgr``` or ```$ efibootmgr -v``` to list entries
+- ```$ efibootmgr -b XXXX -B``` to delete an entry by number
 
 # wifi connection
 ```
@@ -19,11 +19,7 @@ $ fdisk -l
 ```
 
 ### partitioning tools
-```$ cgdisk```
-
-or
-
-```$ cfdisk```
+```$ cgdisk``` or ```$ cfdisk```
 
 See https://wiki.archlinux.org/title/partitioning#Tools
 
@@ -50,10 +46,14 @@ $ pacstrap -i /mnt linux linux-headers linux-firmware base base-devel vi intel-u
 
 # Configure
 ### Generate fstab
-```$ genfstab -U -p /mnt >> /mnt/etc/fstab```
+```
+$ genfstab -U -p /mnt >> /mnt/etc/fstab
+```
 
 ### Chroot(get into the installed system)
-```$ arch-root /mnt```
+```
+$ arch-root /mnt
+```
 
 ### Set timezone
 ```
@@ -70,7 +70,9 @@ $ echo LANG=en_US.UTF-8 > /etc/locale.conf
 ```
 
 ### network setting
-```$ echo myhostname > /etc/hostname```
+```
+$ echo myhostname > /etc/hostname
+```
 
 Edit /etc/hosts as following
 
@@ -81,7 +83,9 @@ Edit /etc/hosts as following
 ```
 
 ### set root password
-```$ passwd```
+```
+$ passwd
+```
 
 ### add user
 ```
@@ -105,7 +109,11 @@ $ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/ef
 
 Edit ```/etc/default/grub```, uncomment ```GRUB_DISABLE_OS_PROBER=false```
 
-```$ grub-mkconfig -o /boot/grub/grub.cfg```
+Generate grub config file
+
+```
+$ grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 # Install network and other necessary things
 ```
@@ -117,13 +125,17 @@ $ pacman -S mtools dosfstools bluez bluez-utils xdg-utils xdg-user-dirs alsa-uti
 # Graphic card driver
 See https://wiki.archlinux.org/title/NVIDIA
 
-```$ pacman -S nvidia nvidia-utils lib32-nvidia-utils```
+```
+$ pacman -S nvidia nvidia-utils lib32-nvidia-utils
+```
 
 Remove kms from the HOOKS array in /etc/mkinitcpio.conf and regenerate the initramfs
 
 Add nvidia, nvidia_modeset, nvidia_uvm and nvidia_drm to MODULES
 
-```$ mkinitcpio -P```
+```
+$ mkinitcpio -P
+```
 
 Make hook
 
@@ -151,11 +163,15 @@ Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /
 
 To enable DRM (Direct Rendering Manager) kernel mode setting, add the nvidia_drm.modeset=1 kernel parameter.
 
-```$ vim /etc/default/grub```
+```
+$ vim /etc/default/grub
+```
 
-Add to GRUB_CMDLINE_LINUX_DEFAULT
+Add to ```GRUB_CMDLINE_LINUX_DEFAULT```, re-generate grub config file
 
-```$ grub-mkconfig -o /boot/grub/grub.cfg```
+```
+$ grub-mkconfig -o /boot/grub/grub.cfg
+```
 
 # Install desktop environment
 ```
