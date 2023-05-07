@@ -22,3 +22,12 @@ Tried all ways to bind pci ids to vfio and make the GPU using vfio-pci driver th
 Is it impossible to do that in only one GPU with host using the same GPU at the same time?
 
 How did they do that in a laptop...? Because it switched automatically?
+
+Okay, finally found the answers here
+
+https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration
+
+### Todo
+- []Linux virtual machine setup
+- []Hackintosh
+- []GPU virtualization
