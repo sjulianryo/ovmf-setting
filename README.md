@@ -28,6 +28,6 @@ Okay, finally found the answers here
 https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration
 
 ### Todo
-- []Linux virtual machine setup
-- []Hackintosh
-- []GPU virtualization
+- [ ] Linux virtual machine setup
+- [ ] Hackintosh
+- [ ] GPU virtualization
