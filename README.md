@@ -6,6 +6,9 @@ Noting for the steps and researches done for fighting with PCI passthrough via O
 ## 20230507
 Gave up Signle-GPU-Passthrough, using DisplayPort@Intel Graphic and HDMI@1080-ti
 
+- [archlinux isntall steps](https://github.com/sjulianryo/ovmf-setting/blob/main/20230507/archlinux-install.md)
+- [Setting files](https://github.com/sjulianryo/ovmf-setting/tree/main/20230507)
+
 References:
 
 - https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
