@@ -1,16 +1,17 @@
-0. UEFI entries
+# UEFI entries
 If you can boot into Linux in UEFI mode, use efibootmgr:
-```efibootmgr or efibootmgr -v``` to list entries;
-```efibootmgr -b XXXX -B``` to delete an entry by number.
 
-1. wifi connection
+- ```efibootmgr or efibootmgr -v``` to list entries
+- ```efibootmgr -b XXXX -B``` to delete an entry by number
+
+# wifi connection
 ```
 $ iwctl
 station wlan0 get-networks
 station wlan0 connect EndPoint_Name
 ```
 
-2. partition
+# partition
 ### check table
 ```
 $ lsblk
@@ -38,12 +39,12 @@ $ swapon /dev/swap_partition
 ```
 See https://wiki.archlinux.org/title/installation_guide#Partition_the_disks
 
-3. Install base system
+# Install base system
 ```
 $ pacstrap -i /mnt linux linux-headers linux-firmware base base-devel vi intel-ucode
 ```
 
-4. Configure
+# Configure
 ### Generate fstab
 ```$ genfstab -U -p /mnt >> /mnt/etc/fstab```
 
@@ -82,7 +83,7 @@ $ passwd username
 $ visudo then uncomment %wheel ALL=(ALL:ALL) ALL for super user
 ```
 
-5. Install bootloader
+# Install bootloader
 ### sample as grub
 See https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
 See https://wiki.archlinux.org/title/GRUB
@@ -93,14 +94,14 @@ $ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/ef
 Edit /etc/default/grub, uncomment GRUB_DISABLE_OS_PROBER=false
 ```$ grub-mkconfig -o /boot/grub/grub.cfg```
 
-6. Install network and other necessary things
+# Install network and other necessary things
 ```
 $ pacman -S networkmanager network-manager-applet dialog wpa_supplicant dhcpcd
 $ systemctl enable NetworkManager
 $ pacman -S mtools dosfstools bluez bluez-utils xdg-utils xdg-user-dirs alsa-utils pulseaudio pulseaudio-bluetooth reflector openssh
 ```
 
-7. Graphic card driver
+# Graphic card driver
 See https://wiki.archlinux.org/title/NVIDIA
 
 ```$ pacman -S nvidia nvidia-utils lib32-nvidia-utils```
@@ -132,13 +133,13 @@ To enable DRM (Direct Rendering Manager) kernel mode setting, add the nvidia_drm
 Add to GRUB_CMDLINE_LINUX_DEFAULT
 ```$ grub-mkconfig -o /boot/grub/grub.cfg```
 
-8. Install desktop environment
+# Install desktop environment
 ```
 $ pacman -S kde sddm konsole neofetch dolphin git wget kate ark p7zip
 $ systemctl enable sddm
 ```
 
-9. Reboot
+# Reboot
 ```
 $ exit
 $ umount -R /mnt
