@@ -8,7 +8,7 @@ If you can boot into Linux in UEFI mode, use efibootmgr:
 ```
 $ iwctl
 station wlan0 get-networks
-station wlan0 connect EndPoint_Name
+station wlan0 connect ENDPOINT_NAME
 ```
 
 # partition
@@ -20,8 +20,11 @@ $ fdisk -l
 
 ### partitioning tools
 ```$ cgdisk```
+
 or
+
 ```$ cfdisk```
+
 See https://wiki.archlinux.org/title/partitioning#Tools
 
 ### formatting
@@ -37,6 +40,7 @@ $ mount /dev/partitionID /mnt/home    #home(first mkdir /mnt/home)
 $ mount /dev/partitionID /mnt/boot/efi   #efi(for dual boot, first mkdir /mnt/boot/efi)
 $ swapon /dev/swap_partition
 ```
+
 See https://wiki.archlinux.org/title/installation_guide#Partition_the_disks
 
 # Install base system
@@ -58,7 +62,8 @@ $ hwclock --systohc
 ```
 
 ### locale
-Edit /etc/locale.gen and uncomment en_US.UTF-8 UTF-8
+Edit ```/etc/locale.gen``` and uncomment ```en_US.UTF-8 UTF-8```
+
 ```
 $ locale-gen
 $ echo LANG=en_US.UTF-8 > /etc/locale.conf
@@ -67,6 +72,7 @@ $ echo LANG=en_US.UTF-8 > /etc/locale.conf
 ### network setting
 ```$ echo myhostname > /etc/hostname```
 Edit /etc/hosts as following
+
 ```
 127.0.0.1	localhost
 ::1		localhost
@@ -86,12 +92,16 @@ $ visudo then uncomment %wheel ALL=(ALL:ALL) ALL for super user
 # Install bootloader
 ### sample as grub
 See https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader
+
 See https://wiki.archlinux.org/title/GRUB
+
 ```
 $ pacman -S grub efibootmgr os-prober
 $ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi
 ```
+
 Edit /etc/default/grub, uncomment GRUB_DISABLE_OS_PROBER=false
+
 ```$ grub-mkconfig -o /boot/grub/grub.cfg```
 
 # Install network and other necessary things
@@ -105,11 +115,19 @@ $ pacman -S mtools dosfstools bluez bluez-utils xdg-utils xdg-user-dirs alsa-uti
 See https://wiki.archlinux.org/title/NVIDIA
 
 ```$ pacman -S nvidia nvidia-utils lib32-nvidia-utils```
+
 Remove kms from the HOOKS array in /etc/mkinitcpio.conf and regenerate the initramfs
+
 Add nvidia, nvidia_modeset, nvidia_uvm and nvidia_drm to MODULES
+
 ```$ mkinitcpio -P```
+
 Make hook
-/etc/pacman.d/hooks/nvidia.hook
+
+```
+$ vim /etc/pacman.d/hooks/nvidia.hook
+```
+
 ```
 [Trigger]
 Operation=Install
@@ -129,8 +147,11 @@ Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /
 ```
 
 To enable DRM (Direct Rendering Manager) kernel mode setting, add the nvidia_drm.modeset=1 kernel parameter.
+
 ```$ vim /etc/default/grub```
+
 Add to GRUB_CMDLINE_LINUX_DEFAULT
+
 ```$ grub-mkconfig -o /boot/grub/grub.cfg```
 
 # Install desktop environment
