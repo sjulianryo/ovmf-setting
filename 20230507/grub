@@ -1,0 +1,8 @@
+# file: /etc/default/grub
+# GRUB boot loader configuration
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="Arch"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet nvidia-drm.modeset=1 intel_iommu=on iommu=pt vfio-pci.ids=10de:1b06,10de:10ef"
+GRUB_CMDLINE_LINUX=""
