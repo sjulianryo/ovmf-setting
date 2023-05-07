@@ -185,3 +185,10 @@ $ exit
 $ umount -R /mnt
 $ reboot now
 ```
+
+# Another trial
+Just use ```archinstall``` using MATE this time
+
+Just exactly what I want, much better than LXQt
+
+NOTE: To mount NTFS partition, MATE needs ```ntfs-3g``` package installed
