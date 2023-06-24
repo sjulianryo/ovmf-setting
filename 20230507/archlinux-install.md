@@ -25,7 +25,9 @@ See https://wiki.archlinux.org/title/partitioning#Tools
 
 ### formatting
 ```
+$ mkfs.fat -F 32 /dev/efi_partition
 $ mkfs.ext4 /dev/root_partition
+$ mkfs.ext4 /dev/home_partition
 $ mkswap /dev/swap_partition
 ```
 
@@ -52,7 +54,7 @@ $ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 ### Chroot(get into the installed system)
 ```
-$ arch-root /mnt
+$ arch-chroot /mnt
 ```
 
 ### Set timezone
