@@ -31,3 +31,8 @@ https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration
 - [ ] Linux virtual machine setup
 - [ ] Hackintosh
 - [ ] GPU virtualization
+
+### Notes
+   <image compression="off"/>
+   <playback compression='off'/>
+   <streaming mode="off"/>
